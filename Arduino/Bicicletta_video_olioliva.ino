@@ -1,7 +1,7 @@
 /*
 <Installazione interattiva pista ciclabile is an interactive installation to promote a cycle lane in Liguria.
 This program sends bike speed values to a pc>
-    Copyright (C) 2018 Massimo Gismondi, Stefano Semeria
+    Copyright (C) 2018 Massimo Gismondi, Stefano Semeria, Francesco Scarrone
 
 This file is part of Installazione interattiva pista ciclabile.
 
