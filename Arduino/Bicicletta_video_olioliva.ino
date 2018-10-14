@@ -16,7 +16,7 @@ This file is part of Installazione interattiva pista ciclabile.
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Nome-Programma.  If not, see <http://www.gnu.org/licenses/>.
+    along with Installazione interattiva pista ciclabile.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <Keyboard.h>
