@@ -64,7 +64,9 @@ void gestionePressioneTasti(float velocita_attuale)
   char nuovoCarattere = mappaVelocitaTasto(velocita_attuale);
   if (nuovoCarattere!=ultimoCaratterePremuto)
   {
-    Keyboard.write(nuovoCarattere);
+    //Keyboard.write(nuovoCarattere);//DA ATTIVARE SOLO DOPO UN CONTROLLO CON PRINTLN
+    Serial.print("Carattere che sara premuto: ");
+    Serial.println(nuovoCarattere);
     ultimoCaratterePremuto = nuovoCarattere;
   }
 }
