@@ -24,15 +24,16 @@ This file is part of Installazione interattiva pista ciclabile.
 #define RAGGIO_RUOTA 1
 #define PI_GRECO 3.1415
 #define VEL_MAX 6.0/*IN METRI AL SECONDO*/
+#define MODALITA 0 //0 tastiera, 1 seriale
  
 volatile unsigned long timeold;
 volatile float velocita_attuale;
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(115200);//Potrebbe essere parecchio alta, dobbiamo verificare la probabilita di errori di trasmissione 
   attachInterrupt(digitalPinToInterrupt(2), magnet_detect, RISING);//Initialize the intterrupt pin (Arduino digital pin 2)
-  Keyboard.begin();
+  Keyboard.begin();//Teoricamente necessario solo nella modalità tastiera, non in quella seriale
   timeold = 0;
 }
 void loop()
@@ -40,20 +41,24 @@ void loop()
   if (millis()-timeold >= 2000) { 
     velocita_attuale = 0;
   }
-  gestionePressioneTasti(velocita_attuale);
-  Serial.println(velocita_attuale);
-  delay(100);
+  if (MODALITA==0)
+  {
+    gestionePressioneTasti(velocita_attuale);
+  }
+  else if (MODALITA==1)
+  {
+    Serial.println(velocita_attuale);
+  }
+  delay(300);
   
   
 }
 void magnet_detect()//This function is called whenever a magnet/interrupt is detected by the arduino
 {
-  //giri++;
   float tempo_secondi = (millis() - timeold)/1000.0;     //*giri;
   velocita_attuale = (2*PI_GRECO*RAGGIO_RUOTA)/tempo_secondi;
   //Serial.println(millis() - timeold);
   timeold = millis();
-  //giri = 0;
   //Serial.println(velocita_attuale);
   //Serial.println("detect");
 }
@@ -74,7 +79,7 @@ char mappaVelocitaTasto(float velocita_attuale)
 {
   int N = 5;
   char tasti[N] = {'A','S','D','F','G'};
-  int indice = (velocita_attuale/VEL_MAX)*N;
+  int indice = ((velocita_attuale/VEL_MAX)*N);
   if (indice<0)
   {
     indice=0;
