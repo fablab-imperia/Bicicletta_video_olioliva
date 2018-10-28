@@ -51,7 +51,7 @@ void loop()
     Serial.print(int(velocita_attuale*1000));
     Serial.print(' ');
   }
-  delay(300);
+  delay(10);
   
   
 }
@@ -69,6 +69,9 @@ void magnet_detect()//This function is called whenever a magnet/interrupt is det
   else
   {
     //Serial.println("Folle");
+    velocita_attuale = (2*PI_GRECO*RAGGIO_RUOTA)/tempo_secondi;
+    //Serial.println(millis() - timeold);
+    timeold = millis();
   }
 }
 
